@@ -1,0 +1,43 @@
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-md);
+  border: 1px solid transparent;
+  animation: slideInRight 0.25s ease;
+  pointer-events: auto;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.success {
+  background: var(--signed-bg);
+  color: var(--signed);
+  border-color: var(--signed-border);
+}
+
+.error {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-color: #F5C5BF;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
