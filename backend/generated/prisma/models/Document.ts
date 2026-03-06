@@ -20,12 +20,22 @@ export type DocumentModel = runtime.Types.Result.DefaultSelection<Prisma.$Docume
 
 export type AggregateDocument = {
   _count: DocumentCountAggregateOutputType | null
+  _avg: DocumentAvgAggregateOutputType | null
+  _sum: DocumentSumAggregateOutputType | null
   _min: DocumentMinAggregateOutputType | null
   _max: DocumentMaxAggregateOutputType | null
 }
 
+export type DocumentAvgAggregateOutputType = {
+  id: number | null
+}
+
+export type DocumentSumAggregateOutputType = {
+  id: number | null
+}
+
 export type DocumentMinAggregateOutputType = {
-  id: string | null
+  id: number | null
   titulo: string | null
   descricao: string | null
   status: string | null
@@ -33,7 +43,7 @@ export type DocumentMinAggregateOutputType = {
 }
 
 export type DocumentMaxAggregateOutputType = {
-  id: string | null
+  id: number | null
   titulo: string | null
   descricao: string | null
   status: string | null
@@ -49,6 +59,14 @@ export type DocumentCountAggregateOutputType = {
   _all: number
 }
 
+
+export type DocumentAvgAggregateInputType = {
+  id?: true
+}
+
+export type DocumentSumAggregateInputType = {
+  id?: true
+}
 
 export type DocumentMinAggregateInputType = {
   id?: true
@@ -113,6 +131,18 @@ export type DocumentAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: DocumentAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: DocumentSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: DocumentMinAggregateInputType
@@ -143,17 +173,21 @@ export type DocumentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: DocumentCountAggregateInputType | true
+  _avg?: DocumentAvgAggregateInputType
+  _sum?: DocumentSumAggregateInputType
   _min?: DocumentMinAggregateInputType
   _max?: DocumentMaxAggregateInputType
 }
 
 export type DocumentGroupByOutputType = {
-  id: string
+  id: number
   titulo: string
   descricao: string
   status: string
   criado_em: Date
   _count: DocumentCountAggregateOutputType | null
+  _avg: DocumentAvgAggregateOutputType | null
+  _sum: DocumentSumAggregateOutputType | null
   _min: DocumentMinAggregateOutputType | null
   _max: DocumentMaxAggregateOutputType | null
 }
@@ -177,7 +211,7 @@ export type DocumentWhereInput = {
   AND?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
   OR?: Prisma.DocumentWhereInput[]
   NOT?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
-  id?: Prisma.StringFilter<"Document"> | string
+  id?: Prisma.IntFilter<"Document"> | number
   titulo?: Prisma.StringFilter<"Document"> | string
   descricao?: Prisma.StringFilter<"Document"> | string
   status?: Prisma.StringFilter<"Document"> | string
@@ -193,7 +227,7 @@ export type DocumentOrderByWithRelationInput = {
 }
 
 export type DocumentWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
+  id?: number
   AND?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
   OR?: Prisma.DocumentWhereInput[]
   NOT?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
@@ -210,15 +244,17 @@ export type DocumentOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   criado_em?: Prisma.SortOrder
   _count?: Prisma.DocumentCountOrderByAggregateInput
+  _avg?: Prisma.DocumentAvgOrderByAggregateInput
   _max?: Prisma.DocumentMaxOrderByAggregateInput
   _min?: Prisma.DocumentMinOrderByAggregateInput
+  _sum?: Prisma.DocumentSumOrderByAggregateInput
 }
 
 export type DocumentScalarWhereWithAggregatesInput = {
   AND?: Prisma.DocumentScalarWhereWithAggregatesInput | Prisma.DocumentScalarWhereWithAggregatesInput[]
   OR?: Prisma.DocumentScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DocumentScalarWhereWithAggregatesInput | Prisma.DocumentScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Document"> | string
+  id?: Prisma.IntWithAggregatesFilter<"Document"> | number
   titulo?: Prisma.StringWithAggregatesFilter<"Document"> | string
   descricao?: Prisma.StringWithAggregatesFilter<"Document"> | string
   status?: Prisma.StringWithAggregatesFilter<"Document"> | string
@@ -226,7 +262,6 @@ export type DocumentScalarWhereWithAggregatesInput = {
 }
 
 export type DocumentCreateInput = {
-  id?: string
   titulo: string
   descricao: string
   status?: string
@@ -234,7 +269,7 @@ export type DocumentCreateInput = {
 }
 
 export type DocumentUncheckedCreateInput = {
-  id?: string
+  id?: number
   titulo: string
   descricao: string
   status?: string
@@ -242,7 +277,6 @@ export type DocumentUncheckedCreateInput = {
 }
 
 export type DocumentUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -250,7 +284,7 @@ export type DocumentUpdateInput = {
 }
 
 export type DocumentUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -258,7 +292,7 @@ export type DocumentUncheckedUpdateInput = {
 }
 
 export type DocumentCreateManyInput = {
-  id?: string
+  id?: number
   titulo: string
   descricao: string
   status?: string
@@ -266,7 +300,6 @@ export type DocumentCreateManyInput = {
 }
 
 export type DocumentUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -274,7 +307,7 @@ export type DocumentUpdateManyMutationInput = {
 }
 
 export type DocumentUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   titulo?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -287,6 +320,10 @@ export type DocumentCountOrderByAggregateInput = {
   descricao?: Prisma.SortOrder
   status?: Prisma.SortOrder
   criado_em?: Prisma.SortOrder
+}
+
+export type DocumentAvgOrderByAggregateInput = {
+  id?: Prisma.SortOrder
 }
 
 export type DocumentMaxOrderByAggregateInput = {
@@ -305,12 +342,24 @@ export type DocumentMinOrderByAggregateInput = {
   criado_em?: Prisma.SortOrder
 }
 
+export type DocumentSumOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 
@@ -353,7 +402,7 @@ export type $DocumentPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Document"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
+    id: number
     titulo: string
     descricao: string
     status: string
@@ -781,7 +830,7 @@ export interface Prisma__DocumentClient<T, Null = never, ExtArgs extends runtime
  * Fields of the Document model
  */
 export interface DocumentFieldRefs {
-  readonly id: Prisma.FieldRef<"Document", 'String'>
+  readonly id: Prisma.FieldRef<"Document", 'Int'>
   readonly titulo: Prisma.FieldRef<"Document", 'String'>
   readonly descricao: Prisma.FieldRef<"Document", 'String'>
   readonly status: Prisma.FieldRef<"Document", 'String'>
