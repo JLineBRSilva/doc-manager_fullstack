@@ -14,7 +14,7 @@ export const documentRepository = {
   },
 
 
-  updateStatus(id: string, status: string) {
+  updateStatus(id: number, status: string) {
     return prisma.document.update({
       where: { id },
       data: { status }
@@ -22,7 +22,7 @@ export const documentRepository = {
   },
 
 
-  delete(id: string) {
+  delete(id: number) {
     return prisma.document.delete({
       where: { id }
     })
