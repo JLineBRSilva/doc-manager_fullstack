@@ -1,0 +1,16 @@
+.vscode
+*/.vscode
+*/.idea
+*/.DS_Store
+
+
+*/dist
+
+*/node_modules
+
+
+*/.env
+*/.env.local
+*/.env.development
+*/.env.test
+*/.env.production
