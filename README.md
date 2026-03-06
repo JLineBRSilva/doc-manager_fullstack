@@ -1,6 +1,6 @@
 # 📄 Doc Manager
 
-API para manipular documentos, e interface web para gerenciamento visual dos mesmos.
+Sistema com API para armazenar "documentos", e interface web para gerenciamento visual dos mesmos.
 
 ## 📥 BAIXAR E TESTAR
 
