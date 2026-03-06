@@ -5,9 +5,9 @@
   "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "server": "tsx watch src/server.ts",
+    "prisma-generate": "npx prisma generate",
     "studio": "npx prisma studio",
-    "_": "tsx watch --env-file .env src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
